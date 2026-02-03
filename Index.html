@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💘</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff6aa2, #ffb3c6);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.window {
+    display: none;
+    height: 100vh;
+    padding-top: 80px;
+    box-sizing: border-box;
+}
+
+.window.active {
+    display: block;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3em;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 15px;
+}
+
+.yes {
+    background: #ff3b6f;
+    color: white;
+}
+
+.no {
+    background: white;
+    color: #ff3b6f;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* ===== WINDOW 3 STYLING ===== */
+#w3 {
+    padding: 40px 20px;
+}
+
+#w3 h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8em;
+    margin: 10px 0;
+}
+
+#w3 p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+/* Image grid (side by side) */
+.slideshow-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.slideshow-container img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.slideshow-container img:hover {
+    transform: scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<!-- WINDOW 1 -->
+<div class="window active" id="w1">
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <button class="yes" id="runYes">YES 💕</button><br>
+    <button class="no" onclick="goToWindow(2)">NO 😤</button>
+</div>
+
+<!-- WINDOW 2 -->
+<div class="window" id="w2">
+    <h1>
+        No, you didn’t say no just now.<br>
+        You cannot say no after 5 yearsss. Try again girl.
+    </h1>
+
+    <button class="yes" onclick="goToWindow(3)">YES 💖</button>
+    <button class="yes" onclick="goToWindow(3)">YES 💘</button>
+</div>
+
+<!-- WINDOW 3 -->
+<div class="window" id="w3">
+    <h1>Flowers for You 🌹💝</h1>
+    <p>And all my love 🍫💞</p>
+
+    <h2>Our Memories 💕</h2>
+
+    <div class="slideshow-container">
+        <img src="IMG-20191220-WA0000.jpg">
+        <img src="IMG-20200123-WA0000.jpg">
+        <img src="IMG-20220119-WA0001.jpg">
+        <img src="IMG-20220205-WA0002.jpg">
+        <img src="IMG-20220903-WA0042.jpg">
+        <img src="IMG-20230123-WA0010.jpg">
+        <img src="IMG-20240206-WA0003.jpg">
+        <img src="IMG-20241109-WA0004.jpg">
+        <img src="IMG-20250127-WA0000.jpg">
+        <img src="IMG-20250316-WA0065 (1).jpg">
+        <img src="IMG-20250320-WA0060.jpg">
+    </div>
+</div>
+
+<script>
+// YES button runs away
+const runYes = document.getElementById("runYes");
+runYes.addEventListener("mouseover", () => {
+    runYes.style.position = "absolute";
+    runYes.style.left = Math.random() * (window.innerWidth - 150) + "px";
+    runYes.style.top = Math.random() * (window.innerHeight - 150) + "px";
+});
+
+// Window navigation
+function goToWindow(num) {
+    document.querySelectorAll(".window").forEach(w => w.classList.remove("active"));
+    document.getElementById("w" + num).classList.add("active");
+}
+
+// Floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 300);
+</script>
+
+</body>
+</html>
